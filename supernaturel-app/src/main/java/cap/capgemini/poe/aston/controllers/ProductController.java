@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cap.capgemini.poe.aston.entities.Product;
+import cap.capgemini.poe.aston.services.ICatergoryService;
 import cap.capgemini.poe.aston.services.IProductService;
 
 @CrossOrigin("*")
@@ -23,6 +24,9 @@ public class ProductController {
 	@Autowired
 	private IProductService productService;
 	
+	@Autowired
+	private ICatergoryService catergoryService;
+	
 	@GetMapping("/products")
 	public List<Product> getAllProducts() {
 		return this.productService.getAllProducts();
@@ -32,10 +36,10 @@ public class ProductController {
 	public Product getProductById(@PathVariable Long id) {
 		return this.productService.getProduct(id);
 	}
-	
-	
-	@PostMapping("/products")
-	public Product createProduct(@RequestBody Product product) {
+		
+	@PostMapping("/products/{categoryId}")
+	public Product createProduct(@PathVariable Long categoryId, @RequestBody Product product) {
+		product.setCategory(catergoryService.getCategory(categoryId));
 		return this.productService.createProduct(product);
 	}
 	
