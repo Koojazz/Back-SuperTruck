@@ -54,7 +54,7 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 		this.productRepository.save(new Product(null, "taboulé", c2, 7.50, "the best of lebanon", "https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/taboule-2077780/22032212-3-fre-FR/Taboule.jpg", null));
 		this.productRepository.save(new Product(null, "soupe miso", c3, 6.50, "the best miso", "https://s3-eu-west-1.amazonaws.com/mae-deli/wp-content/uploads/2017/11/06141329/c.jpg", null));
 
-		this.contactRepository.save(new Contact(null,"testBdd@mail.com","0652521415"));
+		this.contactRepository.save(new Contact(Long.valueOf(1),"testBdd@mail.com","0652521415"));
 
 
 		//		productRepository.findAll().forEach(c -> {

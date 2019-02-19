@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cap.capgemini.poe.aston.entities.Contact;
 import cap.capgemini.poe.aston.services.IContactService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class ContactController {
