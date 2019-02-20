@@ -25,17 +25,24 @@ import lombok.NoArgsConstructor;
 @Table(name="users")
 public class User {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long id;
+	
 	private String lastName;
+	
 	private String firstName;
+	
 	@NotBlank
 	private String password;
+	
 	@NotBlank
 	@Email
     private String email;
+	
     private String phone;
+    
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER )
     private List<Order> orders = new ArrayList<>();
 }
