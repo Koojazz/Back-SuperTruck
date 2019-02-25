@@ -19,26 +19,25 @@ import cap.capgemini.poe.aston.services.IUserService;
 @RestController
 @RequestMapping("/api")
 public class UserController {
-	
+
 	@Autowired
 	private IUserService userService;
-	
+
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
 		return this.userService.getAllUsers();
 	}
-	
+
 	@GetMapping("/users/{id}")
 	public User getProductById(@PathVariable Long id) {
 		return this.userService.getUser(id);
 	}
-	
-	
+
 	@PostMapping("/users")
 	public User createUser(@RequestBody User user) {
 		return this.userService.createUser(user);
 	}
-	
+
 	@PutMapping("/users/{id}")
 	public User update(@PathVariable Long id, @RequestBody User user){
 		return this.userService.editUser(id, user);

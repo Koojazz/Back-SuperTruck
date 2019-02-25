@@ -4,17 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import cap.capgemini.poe.aston.entities.Category;
 import cap.capgemini.poe.aston.entities.Contact;
 import cap.capgemini.poe.aston.entities.Product;
+import cap.capgemini.poe.aston.entities.Role;
 import cap.capgemini.poe.aston.entities.User;
 import cap.capgemini.poe.aston.repositories.ICategoryRepository;
 import cap.capgemini.poe.aston.repositories.IContactRepository;
 import cap.capgemini.poe.aston.repositories.IProductRepository;
 import cap.capgemini.poe.aston.repositories.IUserRepository;
 
+
 @SpringBootApplication
+@EnableJpaAuditing
 public class SupernaturelAppApplication implements CommandLineRunner {
 
 	@Autowired
@@ -36,9 +40,9 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		this.userRepository.save(new User(null, "bob", "square-sponge", "1234", "bob@sponge.com", null, null));
-		this.userRepository.save(new User(null, "bruce", "wayne", "batman", "bruce@wayne.com", null, null));
-		this.userRepository.save(new User(null, "naruto", "uzumaki", "kyubi", "naruto@uzumaki.com", null, null));
+		this.userRepository.save(new User(null, "bob", "square-sponge", "1234", "bob@sponge.com", null, null,Role.ADMIN));
+		this.userRepository.save(new User(null, "bruce", "wayne", "batman", "bruce@wayne.com", null, null,Role.USER));
+		this.userRepository.save(new User(null, "naruto", "uzumaki", "kyubi", "naruto@uzumaki.com", null, null,Role.USER));
 		this.userRepository.findAll().forEach(c -> {
 			System.out.println(c);
 		});
