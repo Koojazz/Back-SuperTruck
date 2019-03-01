@@ -61,17 +61,17 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Set<Role> roles = new HashSet<>();
+		final Set<Role> roles = new HashSet<>();
 		roles.add(this.roleRepository.save(new Role(null, RoleName.ROLE_ADMIN)));
 		roles.add(this.roleRepository.save(new Role(null, RoleName.ROLE_USER)));
 
 		this.userService.createUser(new User(null, "bob", "square-sponge", this.passwordEncoder.encode("12345"), "bob@sponge.com", null, null, roles, null));
-		this.userService.createUser(new User(null, "bruce", "wayne", this.passwordEncoder.encode("batman"), "bruce@wayne.com", null, null, null, null));
-		this.userService.createUser(new User(null, "naruto", "uzumaki", this.passwordEncoder.encode("kyubi"), "naruto@uzumaki.com", null, null, null, null));
+		this.userService.createUser(new User(null, "bruce", "wayne", this.passwordEncoder.encode("batman67"), "bruce@wayne.com", null, null, null, null));
+		this.userService.createUser(new User(null, "naruto", "uzumaki", this.passwordEncoder.encode("kyubi67"), "naruto@uzumaki.com", null, null, null, null));
 
-		Category c1 = new Category(null, "sandwich", null);
-		Category c2 = new Category(null, "salade", null);
-		Category c3 = new Category(null, "soupe", null);
+		final Category c1 = new Category(null, "sandwich", null);
+		final Category c2 = new Category(null, "salade", null);
+		final Category c3 = new Category(null, "soupe", null);
 
 		this.categoryRepository.save(c1);
 		this.categoryRepository.save(c2);

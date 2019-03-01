@@ -38,61 +38,61 @@ import cap.capgemini.poe.aston.repositories.IUserRepository;
 public class AuthController {
 
 	@Autowired
-    AuthenticationManager authenticationManager;
+	AuthenticationManager authenticationManager;
 
-    @Autowired
-    IUserRepository userRepository;
+	@Autowired
+	IUserRepository userRepository;
 
-    @Autowired
-    IRoleRepository roleRepository;
+	@Autowired
+	IRoleRepository roleRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
-    @Autowired
-    JwtTokenProvider tokenProvider;
+	@Autowired
+	JwtTokenProvider tokenProvider;
 
-    @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+	@PostMapping("/signin")
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-        Authentication authentication = this.authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+		final Authentication authentication = this.authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String jwt = this.tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
-    }
+		final String jwt = this.tokenProvider.generateToken(authentication);
+		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, loginRequest.getEmail()));
+	}
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if (this.userRepository.existsByFirstname(signUpRequest.getFirstname()) && this.userRepository.existsByLastname(signUpRequest.getLastname())) {
-            return new ResponseEntity<Object>(new ApiResponse(false, "firstname && lastname combo is already taken!"),
-                    HttpStatus.BAD_REQUEST);
-        }
+	@PostMapping("/signup")
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+		if (this.userRepository.existsByFirstname(signUpRequest.getFirstname()) && this.userRepository.existsByLastname(signUpRequest.getLastname())) {
+			return new ResponseEntity<Object>(new ApiResponse(false, "firstname && lastname combo is already taken!"),
+					HttpStatus.BAD_REQUEST);
+		}
 
-        if (this.userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity<Object>(new ApiResponse(false, "Email Address already in use!"),
-                    HttpStatus.BAD_REQUEST);
-        }
+		if (this.userRepository.existsByEmail(signUpRequest.getEmail())) {
+			return new ResponseEntity<Object>(new ApiResponse(false, "Email Address already in use!"),
+					HttpStatus.BAD_REQUEST);
+		}
 
-        // Creating user's account
-        User user = new User(null, signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getPassword(), signUpRequest.getEmail(), null
-                , null, null, null);
+		// Creating user's account
+		final User user = new User(null, signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getPassword(), signUpRequest.getEmail(), null
+				, null, null, null);
 
-        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = this.roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
+		final Role userRole = this.roleRepository.findByName(RoleName.ROLE_USER)
+				.orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+		user.setRoles(Collections.singleton(userRole));
 
-        User result = this.userRepository.save(user);
+		final User result = this.userRepository.save(user);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{id}")
-                .buildAndExpand(result.getId()).toUri();
+		final URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{id}")
+				.buildAndExpand(result.getId()).toUri();
 
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
-    }
-    
+		return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+	}
+
 }

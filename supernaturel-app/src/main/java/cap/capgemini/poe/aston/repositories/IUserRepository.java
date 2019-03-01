@@ -13,18 +13,18 @@ public interface IUserRepository extends JpaRepository<User, Long>{
 
 	Optional<User> findByEmail(String email);
 
-    Optional<User> findByLastnameOrEmail(String lastname, String email);
+	Optional<User> findByLastnameOrEmail(String lastname, String email);
 
-    List<User> findByIdIn(List<Long> userIds);
+	List<User> findByIdIn(List<Long> userIds);
 
-//    Optional<User> findByUsername(String username);
+	//    Optional<User> findByUsername(String username);
 
-//    Boolean existsByUsername(String username);
-    
-    Boolean existsByLastname(String lastname);
-    
-    Boolean existsByFirstname(String firstname);
+	//    Boolean existsByUsername(String username);
 
-    Boolean existsByEmail(String email);
-    
+	Boolean existsByLastname(String lastname);
+
+	Boolean existsByFirstname(String firstname);
+
+	Boolean existsByEmail(String email);
+
 }
