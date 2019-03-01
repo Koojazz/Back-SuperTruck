@@ -30,33 +30,33 @@ import lombok.NoArgsConstructor;
 @Table(name = "products")
 public class Product {
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private Long id;
-	
+
 	@NotBlank
-    private String name;
-	
-//    @NotBlank
-    @ManyToOne
-    @JoinColumn
-    @JsonIgnoreProperties("products") 
-    private Category category;
-    
-//    @NotBlank
-    private Double price;
-    
-    @Lob
-    private String description;
-    
-    private String image;
-    
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonBackReference
-    @JoinTable(name = "products_orders",
-    	joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"),
-    	inverseJoinColumns = @JoinColumn(name = "order_id", referencedColumnName = "order_id"))
-    private List<Order> order;
-    
+	private String name;
+
+	//    @NotBlank
+	@ManyToOne
+	@JoinColumn
+	@JsonIgnoreProperties("products")
+	private Category category;
+
+	//    @NotBlank
+	private Double price;
+
+	@Lob
+	private String description;
+
+	private String image;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonBackReference
+	@JoinTable(name = "products_orders",
+	joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"),
+	inverseJoinColumns = @JoinColumn(name = "order_id", referencedColumnName = "order_id"))
+	private List<Order> order;
+
 }
