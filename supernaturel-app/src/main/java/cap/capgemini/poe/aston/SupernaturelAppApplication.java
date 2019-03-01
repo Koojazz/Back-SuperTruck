@@ -8,11 +8,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import cap.capgemini.poe.aston.entities.Category;
 import cap.capgemini.poe.aston.entities.Contact;
+import cap.capgemini.poe.aston.entities.Home;
 import cap.capgemini.poe.aston.entities.Product;
 import cap.capgemini.poe.aston.entities.Role;
 import cap.capgemini.poe.aston.entities.User;
 import cap.capgemini.poe.aston.repositories.ICategoryRepository;
 import cap.capgemini.poe.aston.repositories.IContactRepository;
+import cap.capgemini.poe.aston.repositories.IHomeRepository;
 import cap.capgemini.poe.aston.repositories.IProductRepository;
 import cap.capgemini.poe.aston.repositories.IUserRepository;
 
@@ -32,6 +34,9 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 
 	@Autowired
 	private IContactRepository contactRepository;
+
+	@Autowired
+	private IHomeRepository homeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SupernaturelAppApplication.class, args);
@@ -59,6 +64,9 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 		this.productRepository.save(new Product(null, "soupe miso", c3, 6.50, "the best miso", "https://s3-eu-west-1.amazonaws.com/mae-deli/wp-content/uploads/2017/11/06141329/c.jpg", null));
 
 		this.contactRepository.save(new Contact(Long.valueOf(1),"testBdd@mail.com","0652521415"));
+
+		this.homeRepository.save(new Home(Long.valueOf(1),"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+
 
 
 		//		productRepository.findAll().forEach(c -> {
