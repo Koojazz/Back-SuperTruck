@@ -28,11 +28,11 @@ import lombok.Setter;
 public class AuditModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updatedAt;
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date createdAt;

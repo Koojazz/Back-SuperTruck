@@ -5,16 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import cap.capgemini.poe.aston.entities.Role;
 import cap.capgemini.poe.aston.entities.User;
+import cap.capgemini.poe.aston.repositories.IRoleRepository;
 import cap.capgemini.poe.aston.repositories.IUserRepository;
 import cap.capgemini.poe.aston.services.IUserService;
 
 @Service
+@Transactional
 public class UserServiceImpl implements IUserService {
 	
 	@Autowired
 	private IUserRepository userRepository;
+	
+	@Autowired
+	private IRoleRepository roleRepository;
 	
 	@Override
 	public User createUser(User user) {
@@ -29,8 +36,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User editUser(Long id, User user) {
 		User u = userRepository.findById(id).orElse(null);
-		u.setLastName(user.getLastName());
-		u.setFirstName(user.getFirstName());
+		u.setFirstname(user.getFirstname());
+		u.setLastname(user.getLastname());
 		u.setEmail(user.getEmail());
 		u.setPassword(user.getPassword());
 		u.setPhone(user.getPhone());
@@ -60,5 +67,16 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void deleteUser(User user) {
 		userRepository.delete(user);
+	}
+
+	@Override
+	public Role createRole(Role role) {
+		return roleRepository.save(role);
+	}
+
+	@Override
+	public void addRoleToUser(String userEmail, Role rolename) {
+		User user = userRepository.findByEmail(userEmail).orElse(null);
+		user.getRoles().add(rolename);	
 	}
 }

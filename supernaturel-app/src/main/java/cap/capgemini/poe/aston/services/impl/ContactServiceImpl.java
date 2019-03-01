@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cap.capgemini.poe.aston.entities.Contact;
 import cap.capgemini.poe.aston.repositories.IContactRepository;
 import cap.capgemini.poe.aston.services.IContactService;
 
 @Service
+@Transactional
 public class ContactServiceImpl implements IContactService {
 
 	@Autowired
@@ -58,4 +60,5 @@ public class ContactServiceImpl implements IContactService {
 	public void deleteContact(Contact contact) {
 		this.contactRepository.delete(contact);
 	}
+
 }

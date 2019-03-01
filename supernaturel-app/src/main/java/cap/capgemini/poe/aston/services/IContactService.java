@@ -5,7 +5,7 @@ import java.util.List;
 import cap.capgemini.poe.aston.entities.Contact;
 
 public interface IContactService {
-
+	
 	public Contact createContact(Contact contact);
 	public Contact getContact(Long id);
 	public Contact editContact(Long id, Contact contact);
@@ -14,4 +14,5 @@ public interface IContactService {
 	public List<Contact> getAllContacts(int pageNumber, int pageSize);
 	public List<Contact> getAllContacts();
 	public long countContact();
+	
 }
