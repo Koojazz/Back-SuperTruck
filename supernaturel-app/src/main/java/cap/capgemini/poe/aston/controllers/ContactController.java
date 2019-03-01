@@ -19,7 +19,7 @@ import cap.capgemini.poe.aston.services.IContactService;
 @RestController
 @RequestMapping("/api")
 public class ContactController {
-
+	
 	@Autowired
 	private IContactService contactService;
 
@@ -43,5 +43,4 @@ public class ContactController {
 	public Contact update(@PathVariable Long id, @RequestBody Contact contact){
 		return this.contactService.editContact(id, contact);
 	}
-
 }

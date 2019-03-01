@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cap.capgemini.poe.aston.entities.Product;
 import cap.capgemini.poe.aston.repositories.IProductRepository;
 import cap.capgemini.poe.aston.services.IProductService;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements IProductService {
 
 	@Autowired
