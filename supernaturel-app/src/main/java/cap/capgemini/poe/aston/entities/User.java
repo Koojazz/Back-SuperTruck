@@ -36,37 +36,37 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "email" }) })
+		@UniqueConstraint(columnNames = { "email" }) })
 public class User extends  AuditModel{
-	
-	
+
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long id;
-	
-	@NotBlank
+
+
 	@Size(max = 40)
 	private String firstname;
-	
-	@NotBlank
+
+
 	@Size(max = 40)
 	private String lastname;
-	
+
 	@NotBlank
-	@Size(min = 6, max = 20)
+	// @Size(min = 6, max = 20)
 	@JsonIgnore
 	private String password;
-	
+
 	@NaturalId
-    @NotBlank
-    @Size(max = 40)
-    @Email
-    private String email;
-    private String phone;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER )
-    private List<Order> orders = new ArrayList<>();
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
-    private String picture;
+	@NotBlank
+	@Size(max = 40)
+	@Email
+	private String email;
+	private String phone;
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER )
+	private List<Order> orders = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+	private String picture;
 }
