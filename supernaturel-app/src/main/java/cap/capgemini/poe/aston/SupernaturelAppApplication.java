@@ -17,9 +17,7 @@ import cap.capgemini.poe.aston.repositories.IRoleRepository;
 import cap.capgemini.poe.aston.services.IUserService;
 
 @SpringBootApplication
-@EnableConfigurationProperties({
-	FileStorageProperties.class
-})
+@EnableConfigurationProperties({ FileStorageProperties.class })
 @EnableJpaAuditing
 public class SupernaturelAppApplication implements CommandLineRunner {
 
@@ -83,4 +81,3 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 	}
 
 }
-

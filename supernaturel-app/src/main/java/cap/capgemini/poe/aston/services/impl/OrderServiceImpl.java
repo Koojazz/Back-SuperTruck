@@ -1,6 +1,9 @@
 package cap.capgemini.poe.aston.services.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -8,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cap.capgemini.poe.aston.entities.Order;
+import cap.capgemini.poe.aston.entities.OrderStatus;
+import cap.capgemini.poe.aston.entities.Product;
 import cap.capgemini.poe.aston.repositories.IOrderRepository;
+import cap.capgemini.poe.aston.repositories.IProductRepository;
 import cap.capgemini.poe.aston.services.IOrderService;
 
 @Service
@@ -18,8 +24,20 @@ public class OrderServiceImpl implements IOrderService {
 	@Autowired
 	private IOrderRepository orderRepository;
 	
+	@Autowired
+	private IProductRepository productRepository;
+	
 	@Override
-	public Order createOrder(Order order) {
+	public Order createOrder(Order order, List<Long> productsIds) {
+		List<Product> products = new ArrayList<>();
+		for( Long id: productsIds) {
+			
+			Product product = productRepository.findById(id).orElse(null);
+			products.add(product);
+			
+		}
+		order.setProducts(products);
+		order.setStatus(OrderStatus.WAITING);
 		return orderRepository.save(order);
 	}
 
