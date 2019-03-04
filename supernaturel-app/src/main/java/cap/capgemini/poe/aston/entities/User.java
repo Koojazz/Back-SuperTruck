@@ -35,19 +35,16 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "email" }) })
-public class User extends  AuditModel{
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }) })
+public class User extends AuditModel {
 
-
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long id;
 
-
 	@Size(max = 40)
 	private String firstname;
-
 
 	@Size(max = 40)
 	private String lastname;
@@ -63,7 +60,7 @@ public class User extends  AuditModel{
 	@Email
 	private String email;
 	private String phone;
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER )
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Order> orders = new ArrayList<>();
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

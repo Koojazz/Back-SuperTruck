@@ -21,32 +21,31 @@ import cap.capgemini.poe.aston.services.IProductService;
 @RestController
 @RequestMapping("/api")
 public class ProductController {
-	
+
 	@Autowired
 	private IProductService productService;
-	
+
 	@Autowired
 	private ICatergoryService catergoryService;
-	
+
 	@GetMapping("/products")
-	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	public List<Product> getAllProducts() {
 		return this.productService.getAllProducts();
 	}
-	
+
 	@GetMapping("/products/{id}")
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	public Product getProductById(@PathVariable Long id) {
 		return this.productService.getProduct(id);
 	}
-		
+
 	@PostMapping("/products/{categoryId}")
 	@Secured("ROLE_ADMIN")
 	public Product createProduct(@PathVariable Long categoryId, @RequestBody Product product) {
-		product.setCategory(catergoryService.getCategory(categoryId));
+		product.setCategory(this.catergoryService.getCategory(categoryId));
 		return this.productService.createProduct(product);
 	}
-	
+
 	@PutMapping("/products/{id}")
 	@Secured("ROLE_ADMIN")
 	public Product update(@PathVariable Long id, @RequestBody Product product){
