@@ -44,16 +44,16 @@ public class User extends  AuditModel{
 	@Column(name = "user_id")
 	private Long id;
 	
-	@NotBlank
+
 	@Size(max = 40)
 	private String firstname;
 	
-	@NotBlank
+
 	@Size(max = 40)
 	private String lastname;
 	
 	@NotBlank
-	@Size(min = 6, max = 20)
+//	@Size(min = 4, max = 20)
 	@JsonIgnore
 	private String password;
 	

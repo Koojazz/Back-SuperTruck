@@ -6,7 +6,7 @@ import cap.capgemini.poe.aston.entities.Order;
 
 public interface IOrderService {
 	
-	public Order createOrder(Order order);
+	public Order createOrder(Order order, List<Long> productsIds);
 	public Order getOrder(Long id);
 	public Order editOrder(Long id, Order order);
 	public void deleteOrder(Order order);
