@@ -13,9 +13,9 @@ public class LoginRequest {
 	@NotBlank
 	@Size(max = 40)
 	private String email;
-	
+
 	@NotBlank
 	@Size(min = 4, max = 20)
 	private String password;
-	
+
 }
