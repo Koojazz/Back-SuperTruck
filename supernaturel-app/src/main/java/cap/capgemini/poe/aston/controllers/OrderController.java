@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cap.capgemini.poe.aston.entities.Order;
+import cap.capgemini.poe.aston.entities.RequestWrapper;
 import cap.capgemini.poe.aston.services.IOrderService;
 
 @CrossOrigin("*")
@@ -35,8 +36,8 @@ public class OrderController {
 	
 	
 	@PostMapping("/orders")
-	public Order createOrder(@RequestBody Order order) {
-		return this.orderService.createOrder(order);
+	public Order createOrder(@RequestBody RequestWrapper requestWrapper) {
+		return this.orderService.createOrder(requestWrapper.getOrder(), requestWrapper.getIds());
 	}
 	
 	@PutMapping("/orders/{id}")
