@@ -12,14 +12,14 @@ import cap.capgemini.poe.aston.services.IMailService;
 @Service
 public class MailServiceImpl implements IMailService {
 
-	private JavaMailSender javaMailSender;
-	
-	
+	private final JavaMailSender javaMailSender;
+
+
 	@Autowired
 	public MailServiceImpl(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	
+
 	@Override
 	public void sendEmail(User user) throws MailException {
 
@@ -30,16 +30,16 @@ public class MailServiceImpl implements IMailService {
 		 * object of SimpleMailMessage as a Parameter
 		 */
 
-		SimpleMailMessage mail = new SimpleMailMessage();
+		final SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmail());
-		mail.setFrom("");
+		mail.setFrom("supernaturelmaubeuge@gmail.com");
 		mail.setSubject("Super Commande");
-		mail.setText("Hurray ! votre commande est confirmée...");
+		mail.setText("Hurray ! votre commande est confirmée ...");
 
 		/*
 		 * This send() contains an Object of SimpleMailMessage as an Parameter
 		 */
-		javaMailSender.send(mail);
+		this.javaMailSender.send(mail);
 
 	}
 
