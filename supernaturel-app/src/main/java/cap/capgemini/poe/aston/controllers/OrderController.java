@@ -3,7 +3,6 @@ package cap.capgemini.poe.aston.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cap.capgemini.poe.aston.entities.Order;
-import cap.capgemini.poe.aston.entities.Product;
 import cap.capgemini.poe.aston.payload.RequestWrapper;
 import cap.capgemini.poe.aston.services.IOrderService;
 
@@ -40,16 +38,16 @@ public class OrderController {
 
 	@PostMapping("/orders")
 	public Order createOrder(@RequestBody RequestWrapper requestWrapper) {
-		return this.orderService.createOrder(requestWrapper.getOrder(), requestWrapper.getIds());
+		return this.orderService.createOrder(requestWrapper.getUser_id(), requestWrapper.getIds());
 	}
 
 	@PutMapping("/orders/{id}")
 	public Order update(@PathVariable Long id, @RequestBody Order order){
 		return this.orderService.editOrder(id, order);
 	}
-	
+
 	@DeleteMapping("/orders/{id}")
-	public void update(@PathVariable Long id){
+	public void delete(@PathVariable Long id){
 		this.orderService.deleteOrder(id);
 	}
 }

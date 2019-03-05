@@ -42,8 +42,6 @@ public class Order {
 	@JsonBackReference
 	private User user;
 
-	private String quantity;
-
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
 
