@@ -59,15 +59,18 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Set<Role> roles = new HashSet<>();
-		roles.add(roleRepository.save(new Role(null, RoleName.ROLE_ADMIN)));
-//		roles.add(roleRepository.save(new Role(null, RoleName.ROLE_USER)));
+		Set<Role> role1 = new HashSet<>();
+		role1.add(roleRepository.save(new Role(null, RoleName.ROLE_ADMIN)));
+		Set<Role> role2 = new HashSet<>();
+		role2.add(roleRepository.save(new Role(null, RoleName.ROLE_USER)));
 		
 		contactRepository.save(new Contact(null, "cricri@gmail.com", "0600000000"));
 		homeRepository.save(new Home(null, "Du frais maison... mais en camion! Venez découvrir notre concept de restauration responsable ..."));
 
 		userService.createUser(new User(null, "bob", "square-sponge", passwordEncoder.encode("12345"), "bob@sponge.com",
-				null, null, roles, null));
+				null, null, role1, null));
+		userService.createUser(new User(null, "bruce", "wayne", passwordEncoder.encode("123456"), "batman@gotham.com",
+				null, null, role2, null));
 
 		Category c1 = new Category(null, "sandwich", null);
 		Category c2 = new Category(null, "salade", null);
