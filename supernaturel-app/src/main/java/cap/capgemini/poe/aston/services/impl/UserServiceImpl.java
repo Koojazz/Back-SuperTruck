@@ -38,8 +38,6 @@ public class UserServiceImpl implements IUserService {
 		final User u = this.userRepository.findById(id).orElse(null);
 		u.setFirstname(user.getFirstname());
 		u.setLastname(user.getLastname());
-		u.setEmail(user.getEmail());
-		u.setPassword(user.getPassword());
 		u.setPhone(user.getPhone());
 		return this.userRepository.save(u);
 	}
