@@ -1,5 +1,8 @@
 package cap.capgemini.poe.aston;
 
+//import java.util.HashSet;
+//import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +11,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+//import cap.capgemini.poe.aston.entities.Category;
+//import cap.capgemini.poe.aston.entities.Contact;
+//import cap.capgemini.poe.aston.entities.Home;
+//import cap.capgemini.poe.aston.entities.Product;
+//import cap.capgemini.poe.aston.entities.Role;
+//import cap.capgemini.poe.aston.entities.RoleName;
+//import cap.capgemini.poe.aston.entities.User;
 import cap.capgemini.poe.aston.properties.FileStorageProperties;
 import cap.capgemini.poe.aston.repositories.ICategoryRepository;
 import cap.capgemini.poe.aston.repositories.IContactRepository;
@@ -64,9 +74,9 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 		//		this.categoryRepository.save(c2);
 		//		this.categoryRepository.save(c3);
 		//
-		//		this.productRepository.save(new Product(null, "hambourgeois", c1, 8.50, "the best burger", "http://yumm.com/wp-content/uploads/2016/04/1388954443-fergburger-queenstown-new-zealand.jpg", null, null));
-		//		this.productRepository.save(new Product(null, "taboulé", c2, 7.50, "the best of lebanon", "https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/taboule-2077780/22032212-3-fre-FR/Taboule.jpg", null, null));
-		//		this.productRepository.save(new Product(null, "soupe miso", c3, 6.50, "the best miso", "https://s3-eu-west-1.amazonaws.com/mae-deli/wp-content/uploads/2017/11/06141329/c.jpg", null, null));
+		//		this.productRepository.save(new Product(null, "hambourgeois", c1, 8.50, "the best burger", "http://yumm.com/wp-content/uploads/2016/04/1388954443-fergburger-queenstown-new-zealand.jpg", null));
+		//		this.productRepository.save(new Product(null, "taboulé", c2, 7.50, "the best of lebanon", "https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/taboule-2077780/22032212-3-fre-FR/Taboule.jpg", null));
+		//		this.productRepository.save(new Product(null, "soupe miso", c3, 6.50, "the best miso", "https://s3-eu-west-1.amazonaws.com/mae-deli/wp-content/uploads/2017/11/06141329/c.jpg", null));
 		//
 		//		this.contactRepository.save(new Contact(Long.valueOf(1),"testBdd@mail.com","0652521415"));
 		//
