@@ -13,68 +13,75 @@ import cap.capgemini.poe.aston.entities.OrderStatus;
 import cap.capgemini.poe.aston.entities.Product;
 import cap.capgemini.poe.aston.repositories.IOrderRepository;
 import cap.capgemini.poe.aston.repositories.IProductRepository;
+import cap.capgemini.poe.aston.repositories.IUserRepository;
 import cap.capgemini.poe.aston.services.IOrderService;
 
 @Service
 @Transactional
 public class OrderServiceImpl implements IOrderService {
-	
+
 	@Autowired
 	private IOrderRepository orderRepository;
-	
+
 	@Autowired
 	private IProductRepository productRepository;
-	
+
+	@Autowired
+	private IUserRepository userRepository;
+
 	@Override
-	public Order createOrder(Order order, List<Long> productsIds) {
-		List<Product> products = new ArrayList<>();
-		for( Long id: productsIds) {
-			
-			Product product = productRepository.findById(id).orElse(null);
+	public Order createOrder(String user_id, List<Long> productsIds) {
+		final List<Product> products = new ArrayList<>();
+		for( final Long id: productsIds) {
+
+			final Product product = this.productRepository.findById(id).orElse(null);
 			products.add(product);
-			
+
 		}
+
+		final Order order = new Order();
 		order.setProducts(products);
 		order.setStatus(OrderStatus.WAITING);
-		return orderRepository.save(order);
+		order.setUser(this.userRepository.findById(Long.valueOf(user_id)).orElse(null));
+		return this.orderRepository.save(order);
 	}
 
 	@Override
 	public Order getOrder(Long id) {
-		return orderRepository.findById(id).orElse(null);
+		return this.orderRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Order editOrder(Long id, Order order) {
-		Order o = orderRepository.findById(id).orElse(null);
+		final Order o = this.orderRepository.findById(id).orElse(null);
 		o.setUser(order.getUser());
 		o.setProducts(order.getProducts());
-		return orderRepository.save(o);
+		return this.orderRepository.save(o);
 	}
 
 	@Override
 	public void deleteOrder(Order order) {
-		orderRepository.delete(order);
+		this.orderRepository.delete(order);
 	}
 
 	@Override
 	public void deleteOrder(Long id) {
-		orderRepository.deleteById(id);
+		this.orderRepository.deleteById(id);
 	}
 
 	@Override
 	public List<Order> getAllOrders(int pageNumber, int pageSize) {
-		return orderRepository.findAll(PageRequest.of(pageNumber, pageSize)).getContent();
+		return this.orderRepository.findAll(PageRequest.of(pageNumber, pageSize)).getContent();
 	}
 
 	@Override
 	public List<Order> getAllOrders() {
-		return orderRepository.findAll();
+		return this.orderRepository.findAll();
 	}
 
 	@Override
 	public long countOrders() {
-		return orderRepository.count();
+		return this.orderRepository.count();
 	}
 
 }

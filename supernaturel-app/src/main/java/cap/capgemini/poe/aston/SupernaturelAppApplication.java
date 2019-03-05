@@ -1,8 +1,5 @@
 package cap.capgemini.poe.aston;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,13 +8,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import cap.capgemini.poe.aston.entities.Category;
-import cap.capgemini.poe.aston.entities.Contact;
-import cap.capgemini.poe.aston.entities.Home;
-import cap.capgemini.poe.aston.entities.Product;
-import cap.capgemini.poe.aston.entities.Role;
-import cap.capgemini.poe.aston.entities.RoleName;
-import cap.capgemini.poe.aston.entities.User;
 import cap.capgemini.poe.aston.properties.FileStorageProperties;
 import cap.capgemini.poe.aston.repositories.ICategoryRepository;
 import cap.capgemini.poe.aston.repositories.IContactRepository;

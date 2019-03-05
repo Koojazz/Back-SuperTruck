@@ -21,31 +21,31 @@ import cap.capgemini.poe.aston.services.IOrderService;
 @RestController
 @RequestMapping("/api")
 public class OrderController {
-	
+
 	@Autowired
 	private IOrderService orderService;
-	
+
 	@GetMapping("/orders")
 	public List<Order> getAllOrders() {
 		return this.orderService.getAllOrders();
 	}
-	
+
 	@GetMapping("/orders/{id}")
 	public Order getOrderById(@PathVariable Long id) {
 		return this.orderService.getOrder(id);
 	}
-	
-	
+
+
 	@PostMapping("/orders")
 	public Order createOrder(@RequestBody RequestWrapper requestWrapper) {
-		return this.orderService.createOrder(requestWrapper.getOrder(), requestWrapper.getIds());
+		return this.orderService.createOrder(requestWrapper.getUser_id(), requestWrapper.getIds());
 	}
-	
+
 	@PutMapping("/orders/{id}")
 	public Order update(@PathVariable Long id, @RequestBody Order order){
 		return this.orderService.editOrder(id, order);
 	}
-	
+
 	@DeleteMapping("/orders/{id}")
 	public void delete(@PathVariable Long id){
 		this.orderService.deleteOrder(id);
