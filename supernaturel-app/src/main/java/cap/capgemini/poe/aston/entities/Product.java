@@ -53,6 +53,5 @@ public class Product {
     	joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"),
     	inverseJoinColumns = @JoinColumn(name = "order_id", referencedColumnName = "order_id"))
     private List<Order> order;
-    private String picture;
     
 }
