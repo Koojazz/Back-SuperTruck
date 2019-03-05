@@ -32,7 +32,7 @@ public class MailServiceImpl implements IMailService {
 
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmail());
-		mail.setFrom("");
+		mail.setFrom("supernaturelmaubeuge@gmail.com");
 		mail.setSubject("Super Commande");
 		mail.setText("Hurray ! votre commande est confirmée...");
 
