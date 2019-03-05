@@ -66,11 +66,6 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-		if (this.userRepository.existsByFirstname(signUpRequest.getFirstname())
-				&& this.userRepository.existsByLastname(signUpRequest.getLastname())) {
-			return new ResponseEntity<Object>(new ApiResponse(false, "firstname && lastname combo is already taken!"),
-					HttpStatus.BAD_REQUEST);
-		}
 
 		if (this.userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity<Object>(new ApiResponse(false, "Email Address already in use!"),

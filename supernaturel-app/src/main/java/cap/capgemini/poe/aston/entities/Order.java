@@ -28,20 +28,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="orders")
 public class Order {
-	
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id")
 	private Long id;
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "products_orders", 
-		joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "order_id"), 
-		inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"))
+	@JoinTable(name = "products_orders",
+	joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "order_id"),
+	inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"))
 	private List<Product> products;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	@JsonBackReference
 	private User user;
+
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
-	
+
 }

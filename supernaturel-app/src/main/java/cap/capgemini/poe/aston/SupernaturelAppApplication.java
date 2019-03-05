@@ -72,20 +72,23 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 		userService.createUser(new User(null, "bruce", "wayne", passwordEncoder.encode("123456"), "batman@gotham.com",
 				null, null, role2, null));
 
+		this.userService.createUser(new User(null, "boby", "squaree-sponge", this.passwordEncoder.encode("12345"), "boob@sponge.com",
+				null, null, roles2, null));
+
 		Category c1 = new Category(null, "sandwich", null);
 		Category c2 = new Category(null, "salade", null);
 		Category c3 = new Category(null, "soupe", null);
 
-		categoryRepository.save(c1);
-		categoryRepository.save(c2);
-		categoryRepository.save(c3);
+		this.categoryRepository.save(c1);
+		this.categoryRepository.save(c2);
+		this.categoryRepository.save(c3);
 
-		productRepository.save(new Product(null, "hambourgeois", c1, 8.50, "the best burger",
+		this.productRepository.save(new Product(null, "hambourgeois", c1, 8.50, "the best burger",
 				"http://yumm.com/wp-content/uploads/2016/04/1388954443-fergburger-queenstown-new-zealand.jpg", null));
-		productRepository.save(new Product(null, "taboulé", c2, 7.50, "the best of lebanon",
+		this.productRepository.save(new Product(null, "taboulé", c2, 7.50, "the best of lebanon",
 				"https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/taboule-2077780/22032212-3-fre-FR/Taboule.jpg",
 				null));
-		productRepository.save(new Product(null, "soupe miso", c3, 6.50, "the best miso",
+		this.productRepository.save(new Product(null, "soupe miso", c3, 6.50, "the best miso",
 				"https://s3-eu-west-1.amazonaws.com/mae-deli/wp-content/uploads/2017/11/06141329/c.jpg", null));
 
 		// productRepository.findAll().forEach(c -> {
