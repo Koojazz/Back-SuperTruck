@@ -61,7 +61,10 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleRepository.save(new Role(null, RoleName.ROLE_ADMIN)));
-		roles.add(roleRepository.save(new Role(null, RoleName.ROLE_USER)));
+//		roles.add(roleRepository.save(new Role(null, RoleName.ROLE_USER)));
+		
+		contactRepository.save(new Contact(null, "cricri@gmail.com", "0600000000"));
+		homeRepository.save(new Home(null, "Du frais maison... mais en camion! Venez découvrir notre concept de restauration responsable ..."));
 
 		userService.createUser(new User(null, "bob", "square-sponge", passwordEncoder.encode("12345"), "bob@sponge.com",
 				null, null, roles, null));
