@@ -59,25 +59,22 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Set<Role> role1 = new HashSet<>();
-		role1.add(roleRepository.save(new Role(null, RoleName.ROLE_ADMIN)));
-		Set<Role> role2 = new HashSet<>();
-		role2.add(roleRepository.save(new Role(null, RoleName.ROLE_USER)));
-		
-		contactRepository.save(new Contact(null, "cricri@gmail.com", "0600000000"));
-		homeRepository.save(new Home(null, "Du frais maison... mais en camion! Venez découvrir notre concept de restauration responsable ..."));
+		final Set<Role> role1 = new HashSet<>();
+		role1.add(this.roleRepository.save(new Role(null, RoleName.ROLE_ADMIN)));
+		final Set<Role> role2 = new HashSet<>();
+		role2.add(this.roleRepository.save(new Role(null, RoleName.ROLE_USER)));
 
-		userService.createUser(new User(null, "bob", "square-sponge", passwordEncoder.encode("12345"), "bob@sponge.com",
+		this.contactRepository.save(new Contact(null, "cricri@gmail.com", "0600000000"));
+		this.homeRepository.save(new Home(null, "Du frais maison... mais en camion! Venez découvrir notre concept de restauration responsable ..."));
+
+		this.userService.createUser(new User(null, "bob", "square-sponge", this.passwordEncoder.encode("12345"), "bob@sponge.com",
 				null, null, role1, null));
-		userService.createUser(new User(null, "bruce", "wayne", passwordEncoder.encode("123456"), "batman@gotham.com",
+		this.userService.createUser(new User(null, "bruce", "wayne", this.passwordEncoder.encode("123456"), "batman@gotham.com",
 				null, null, role2, null));
 
-		this.userService.createUser(new User(null, "boby", "squaree-sponge", this.passwordEncoder.encode("12345"), "boob@sponge.com",
-				null, null, roles2, null));
-
-		Category c1 = new Category(null, "sandwich", null);
-		Category c2 = new Category(null, "salade", null);
-		Category c3 = new Category(null, "soupe", null);
+		final Category c1 = new Category(null, "sandwich", null);
+		final Category c2 = new Category(null, "salade", null);
+		final Category c3 = new Category(null, "soupe", null);
 
 		this.categoryRepository.save(c1);
 		this.categoryRepository.save(c2);
