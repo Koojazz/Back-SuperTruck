@@ -69,8 +69,6 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 
 		this.userService.createUser(new User(null, "bob", "square-sponge", this.passwordEncoder.encode("12345"), "bob@sponge.com",
 				null, null, role1, null));
-		this.userService.createUser(new User(null, "bruce", "wayne", this.passwordEncoder.encode("123456"), "batman@gotham.com",
-				null, null, role2, null));
 
 		final Category c1 = new Category(null, "sandwich", null);
 		final Category c2 = new Category(null, "salade", null);
@@ -80,13 +78,13 @@ public class SupernaturelAppApplication implements CommandLineRunner {
 		this.categoryRepository.save(c2);
 		this.categoryRepository.save(c3);
 
-		this.productRepository.save(new Product(null, "hambourgeois", c1, 8.50, "the best burger",
-				"http://yumm.com/wp-content/uploads/2016/04/1388954443-fergburger-queenstown-new-zealand.jpg", null));
-		this.productRepository.save(new Product(null, "taboulé", c2, 7.50, "the best of lebanon",
+		this.productRepository.save(new Product(null, "Hambourgeois", c1, 8.50, "Un hambourgeois vegan à l'algue kombu.",
+				"http://laurencariscooks.com/1_lcc/wp-content/uploads/2016/08/Black-Bean-Burgers-4-600x600.jpg", null));
+		this.productRepository.save(new Product(null, "Taboulé", c2, 7.50, "Un taboulé savoureux, aux 3 légumes.",
 				"https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/taboule-2077780/22032212-3-fre-FR/Taboule.jpg",
 				null));
-		this.productRepository.save(new Product(null, "soupe miso", c3, 6.50, "the best miso",
-				"https://s3-eu-west-1.amazonaws.com/mae-deli/wp-content/uploads/2017/11/06141329/c.jpg", null));
+		this.productRepository.save(new Product(null, "Soupe miso", c3, 6.50, "Une soupe onctueuse, aux champignons et Cébette.",
+				"https://www.foodette.fr/files/products/soupemisodashitofuwakamealgueshiitakeciboule-squashed-2.JPG", null));
 
 		// productRepository.findAll().forEach(c -> {
 		// System.out.println(c);
