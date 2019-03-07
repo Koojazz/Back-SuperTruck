@@ -17,51 +17,50 @@ public class ProductServiceImpl implements IProductService {
 
 	@Autowired
 	private IProductRepository productRepository;
-	
+
 	@Override
 	public Product createProduct(Product product) {
-		return productRepository.save(product);
+		return this.productRepository.save(product);
 	}
 
 	@Override
 	public Product getProduct(Long id) {
-		return productRepository.findById(id).orElse(null);
+		return this.productRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Product editProduct(Long id, Product product) {
-		Product p = productRepository.findById(id).orElse(null);
+		final Product p = this.productRepository.findById(id).orElse(null);
 		p.setName(product.getName());
 		p.setDescription(product.getDescription());
 		p.setPrice(product.getPrice());
 		p.setCategory(product.getCategory());
-		p.setImage(product.getImage());
-		return productRepository.save(p);
+		return this.productRepository.save(p);
 	}
 
 	@Override
 	public void deleteProduct(Long id) {
-		productRepository.deleteById(id);
+		this.productRepository.deleteById(id);
 	}
 
 	@Override
 	public List<Product> getAllProducts(int pageNumber, int pageSize) {
-		return productRepository.findAll(PageRequest.of(pageNumber, pageSize)).getContent();
+		return this.productRepository.findAll(PageRequest.of(pageNumber, pageSize)).getContent();
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		return productRepository.findAll();
+		return this.productRepository.findAll();
 	}
 
 	@Override
 	public long countProducts() {
-		return productRepository.count();
+		return this.productRepository.count();
 	}
 
 	@Override
 	public void deleteProduct(Product product) {
-		productRepository.delete(product);
-	}	
-	
+		this.productRepository.delete(product);
+	}
+
 }

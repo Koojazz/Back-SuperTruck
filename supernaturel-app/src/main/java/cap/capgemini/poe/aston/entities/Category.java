@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
-	
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank
@@ -30,4 +30,6 @@ public class Category {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("category")
 	private List<Product> products;
+
+
 }
